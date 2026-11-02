@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="text-align:center;">
+    ❤️ My Wishlist
+</h2>
+
+<table border="1" cellpadding="10" style="margin:auto; border-collapse:collapse;">
+
+    <tr>
+        <th>Cake</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+
+    {% for item in wishlist_items %}
+
+    <tr>
+
+        <td>{{ item.cake.name }}</td>
+
+        <td>₹ {{ item.cake.price }}</td>
+
+        <td>
+            <a href="{% url 'remove_from_wishlist' item.id %}">
+                Remove
+            </a>
+        </td>
+
+    </tr>
+
+    {% empty %}
+
+    <tr>
+        <td colspan="3" style="text-align:center;">
+            No cakes in wishlist.
+        </td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

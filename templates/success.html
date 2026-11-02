@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 style="text-align:center; color:green;">
+    🎉 Order Placed Successfully!
+</h1>
+
+<p style="text-align:center;">
+    Thank you for shopping with Online Bakers System.
+</p>
+
+<div style="text-align:center;">
+    <a href="{% url 'home' %}">
+        <button>Continue Shopping</button>
+    </a>
+</div>
+
+{% endblock %}

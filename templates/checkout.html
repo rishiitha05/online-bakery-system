@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="text-align:center;">Checkout</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Phone:</label><br>
+    <input type="text" name="phone" required><br><br>
+
+    <label>Address:</label><br>
+    <textarea name="address" rows="4" required></textarea><br><br>
+
+    <h3>Total Amount: ₹ {{ total }}</h3>
+   
+<h3>Select Payment Method</h3>
+
+<label>
+    <input type="radio" name="payment_method" value="Cash on Delivery" checked>
+    💵 Cash on Delivery
+</label>
+
+<br><br>
+
+<label>
+    <input type="radio" name="payment_method" value="UPI">
+    📱 UPI
+</label>
+
+<br><br>
+
+<label>
+    <input type="radio" name="payment_method" value="Credit/Debit Card">
+    💳 Credit / Debit Card
+</label>
+
+<br><br>
+
+    <button type="submit">Place Order</button>
+
+</form>
+
+{% endblock %}

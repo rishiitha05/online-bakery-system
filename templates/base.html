@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Bakers System</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header>
+    <h1>🍰 Online Bakers System</h1>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="#">Cakes</a>
+        <a href="#">Pastries</a>
+        <a href="#">Cookies</a>
+        <a href="{% url 'cart' %}">Cart</a>  
+        <a href="{% url 'wishlist' %}">Wishlist ❤️</a>
+        <a href="{% url 'orders' %}">My Orders</a>     
+        {% if request.session.customer_id %}
+
+    <a href="#">Welcome {{ request.session.customer_name }}</a>
+
+    <a href="{% url 'logout' %}">Logout</a>
+
+{% else %}
+
+    <a href="{% url 'login' %}">Login</a>
+
+    <a href="{% url 'register' %}">Register</a>
+    <a href="{% url 'contact' %}">Contact</a>
+    <a href="{% url 'about' %}">About</a>
+
+{% endif %}
+    </nav>
+
+</header>
+
+<hr>
+<hr>
+
+<footer style="text-align:center;padding:20px;">
+
+    <h3>🍰 Online Bakers System</h3>
+
+    <p>Fresh Cakes | Fast Delivery | Quality Guaranteed</p>
+
+    <p>Email : bakery@gmail.com</p>
+
+    <p>Phone : +91 9876543210</p>
+
+    <p>© 2026 Online Bakers System</p>
+
+</footer>
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="text-align:center;">🛒 My Cart</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="margin:auto;">
+
+    <tr>
+        <th>Image</th>
+        <th>Cake</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Action</th>
+
+    </tr>
+
+    {% for item in cart_items %}
+
+    <tr>
+        <td>
+            <img src="{{ item.cake.image.url }}" width="100">
+        </td>
+
+        <td>{{ item.cake.name }}</td>
+
+        <td>₹ {{ item.cake.price }}</td>
+
+<td>
+
+    <a href="{% url 'decrease_quantity' item.id %}">
+<button>-</button>
+</a>
+
+&nbsp;{{ item.quantity }}&nbsp;
+
+<a href="{% url 'increase_quantity' item.id %}">
+<button>+</button>
+</a>
+
+</td>
+        <td>₹ {{ item.item_total }}</td>
+     <td>
+     <a href="{% url 'remove_from_cart' item.id %}">
+        <button>Remove</button>
+     </a>
+    </td>
+</tr>
+<br><br>
+
+<div style="text-align:center;">
+   
+</div>
+
+    {% endfor %}
+
+    <tr>
+        <td colspan="4"><b>Grand Total</b></td>
+        <td><b>₹ {{ total }}</b></td>
+    </tr>
+
+</table>
+</table>
+
+<br><br>
+
+<div style="text-align:center;">
+    <a href="{% url 'checkout' %}">
+        <button>Proceed to Checkout</button>
+    </a>
+</div>
+
+{% endblock %}

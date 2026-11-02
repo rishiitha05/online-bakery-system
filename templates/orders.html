@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="text-align:center;">
+    📦 My Orders
+</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="margin:auto;">
+
+    <tr>
+        <th>Customer</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Total</th>
+        <th>Payment</th>
+        <th>Status</th>
+        <th>Date</th>
+    </tr>
+
+    {% for order in orders %}
+
+    <tr>
+        <td>{{ order.customer_name }}</td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.address }}</td>
+        <td>₹ {{ order.total_amount }}</td>
+        <td>{{ order.payment_method }}</td>
+
+        <td>
+            {% if order.status == "Pending" %}
+                🟡 Pending
+            {% elif order.status == "Preparing" %}
+                🟠 Preparing
+            {% elif order.status == "Out for Delivery" %}
+                🔵 Out for Delivery
+            {% elif order.status == "Delivered" %}
+                🟢 Delivered
+            {% else %}
+                {{ order.status }}
+            {% endif %}
+        </td>
+
+        <td>{{ order.order_date }}</td>
+    </tr>
+
+    {% empty %}
+
+    <tr>
+        <td colspan="7" style="text-align:center;">
+            No Orders Yet
+        </td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}
